@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MacoderBot Session</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>MacoderBot Session</h1>
+
+    <!-- Mode selection -->
+    <div class="mode-selection">
+        <label><input type="radio" name="mode" value="qr" checked> QR Code</label>
+        <label><input type="radio" name="mode" value="code"> Pair Code</label>
+    </div>
+
+    <!-- WhatsApp number input -->
+    <div class="input-section">
+        <input type="text" id="whatsappNumber" placeholder="Enter your WhatsApp number">
+    </div>
+
+    <button id="startBtn">Link Bot</button>
+
+    <!-- QR Code -->
+    <div id="qrSection" style="display:none;">
+        <h3>Scan this QR code</h3>
+        <canvas id="qrCodeCanvas"></canvas>
+    </div>
+
+    <!-- Pair Code -->
+    <div id="codeSection" style="display:none;">
+        <h3>Enter this code in WhatsApp:</h3>
+        <div id="pairCode" class="code"></div>
+    </div>
+
+    <!-- Typing effect -->
+    <div id="typingEffect" class="typing"></div>
+
+    <!-- Music controls -->
+    <div class="music-controls">
+        <audio id="bgMusic" loop>
+            <source src="music.mp3" type="audio/mpeg">
+        </audio>
+        <button id="playMusic">▶️ Play</button>
+        <button id="pauseMusic">⏸️ Pause</button>
+        <button id="volumeUp">🔊+</button>
+        <button id="volumeDown">🔉-</button>
+    </div>
+
+    <!-- Bot command section -->
+    <div id="commandSection" class="disabled">
+        <input type="text" id="botCommandInput" placeholder="Enter bot command">
+        <button id="sendCommandBtn">Send</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
