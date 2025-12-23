@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  macoderbot:
+    container_name: macoderbot
+    build: .
+    image: macoderbot:latest
+    restart: unless-stopped
+
+    ports:
+      - "3000:3000"
+
+    env_file:
+      - .env
+
+    environment:
+      - NODE_ENV=production
+      - PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+
+    volumes:
+      # Persist WhatsApp login session
+      - ./whatsapp-auth:/app/.whatsapp-auth
+      # Optional logs
+      - ./logs:/app/logs
+
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000',res=>process.exit(res.statusCode===200?0:1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
